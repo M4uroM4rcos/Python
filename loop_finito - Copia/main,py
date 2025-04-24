@@ -1,0 +1,11 @@
+# tratamento de exceção
+try:
+    # declaração de variavel
+    n = int(input('Informe um número interiro positivo: '))
+
+    # Loop
+    while n >= 0:
+        print(n)
+        n-=1
+except Exception as e:
+    print(f'Número inválido. {e}.')
