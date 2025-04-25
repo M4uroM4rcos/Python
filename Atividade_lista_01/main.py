@@ -2,30 +2,35 @@
 # 1º Obs: só quero os nomes dos itens, deixe os preços e a quantidade de fora.
 # 2º Obs: após terminarem, faça o comit no GitHub.
 
-#Adição de lista
+# importar a bibliotexa
+import os
 
-nomes = []
+# declarar lista
+lista = []
 
 # tratamento de execeção
-
 try:
+    # loop infinito
     while True:
         # informe os intens de sua compra
-        item = input('Informe os intens de sua compra e confira na lista: ')
+        item = input('Informe o nome intem ou deixe em branco para encerrar: ') # input
+        os.system('cls') # limpa o terminal
 
-        #verifica se o nome foi inserido
+        #verifica se o item está vazio ou não
         if item != "":
-            nomes.append(item)
+            lista.append(item) # insere o item na lista
+            print(f'{item} inserido na lista com sucesso!') # mensagem de confirmação
             continue
         else:
             break
 
     # ordenar lista
-    nomes.sort()
+    lista.sort()
 
 except Exception as e:
-    print(f'Não foi possivel inserir dados ma lista. {e}.')
+    print(f'Não foi possivel inserir item ma lista. {e}.')
 
 finally:
-    for item in nomes:
-        print(item) 
+    print('Lista de itens:\n')
+    for item in lista:
+        print(item)
