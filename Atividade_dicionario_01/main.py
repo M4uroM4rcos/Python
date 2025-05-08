@@ -5,64 +5,42 @@
 
 import os
 # dicionario
-dados = {}
+usuario = {}
 
-try:
-    
-    print("Para realizar um cadastro, favor informe os seguintes dados: ")
-    
-    while True:
-        
-        # exibe os dados do dicionario
-        for chave in dados:
-            print(f'{chave.title()}: {dados.get(chave)}.')
+try: 
+    usuario["nome"] = input('Informe o nome: ')
+    usuario["data de nascimento"] = input('Informe a data de nascimento: ')
+    usuario["cpf"] = input('Informe o cpf: ')
+    usuario["email"] = input('Informe o email: ')
+    usuario["gênero"] = input('Informe o gênero: ')
+    usuario["telefone"] = input('Informe o telefone: ')
+    usuario["altura"] = float(input('Informe a altura: ').replace(",", "."))
+    usuario["peso"] = float(input('Informe o peso: ').replace(",", "."))
+    usuario["tipo sanguinêo"] = input('Informe o tipo sanguinêo: ')
 
-        # usuário informa se deseja inserir nova chave ou encerrar
-        prosseguir = input("Deseja inserir novos dados? (s/n): ")
-        match prosseguir:
-                case "s":
-                    # usuário informa o nome da chave adicional que deseja cadastrar
-                    nova_chave = input("\nInforme o nome da nova chave: ")
-                    dados[nova_chave] = input(f'Informe o valor de {nova_chave}: ')
-                    os.system("cls")
-                    continue
-                case "n":
-                    break
-                case _:
-                    print("Opção invalida.")
-        
+    # exibe os dados do usuário
+    for chave in usuario:
+          print(f'{chave.title()}: {usuario.get(chave)}')
+
+    # exibindo o imc do usuario
+    imc = usuario.get("peso")/usuario.get('altura')**2
+
+    # exibe o valor do imc
+    print(f'\nIMC de {usuario.get('nome')}: {imc:,.2f}')
+
+    # escolhe o diagnostico do usuario co, base no valor do imc
+    if imc <= 18.5:
+        print(f"{usuario.get('nome')} está abaixo do peso.")
+    elif imc < 25:
+        print(f"{usuario.get('nome')} está no peso ideal. PARABENS!!!")
+    elif imc < 30:
+        print(f"{usuario.get('nome')} está acima do peso ideal.")
+    elif imc < 35:
+        print(f"{usuario.get('nome')} está obeso.")
+    elif imc < 40:
+        print(f"{usuario.get('nome')} está com obesidade nevel II.")
+    else:
+        print(f"{usuario.get('nome')} está com obesidade morbida. PROCURE UM MÉDICO.")
 
 except Exception as e:
-    print(f'Não foi possivel inserir a nova chave. {e}.')
-
-finally:
-     print ("Bem vindo a Calculadora de IMC")
-
-pergunta_nome = input("Qual é o seu nome? " )
-nome = ("Olá" , pergunta_nome)
-idade = input (f"Qual sua idade? ")
-peso = float(input("Qual seu peso (em KG)? "))
-altura = float(input("Qual sua Altura (em metros e usando ponto)? "))
-
-print("Vamos calcular seu IMC")
-
-imc = (peso / (altura * altura))
-
-print(pergunta_nome , (f"seu IMC é: {imc:.2f}"))
-
-if imc < 16:
-	print("Seu estado é de Magreza grave\nProcure um médico ou nutricionista.")
-elif imc < 17:
-	print("Seu estado é de Magreza moderada\nPrecisa rever sua alimentação.")
-elif imc < 18.5:
-	print("Seu estado é de Magreza leve\nPrecisa rever sua alimentação.")
-elif imc < 25:
-	print("Você está Saudável.\nParabéns!")
-elif imc < 30:
-	print("Seu estado é de Sobrepeso\nPrecisa rever sua alimentação.")
-elif imc < 35:
-	print("Seu estado é de Obesidade Grau I\nProcure um médico ou nutricionista.")
-elif imc < 40:
-	print("Seu estado é de Obesidade Grau II (severa)\nProcure um médico ou nutricionista.")
-else:
-	print("Seu estado é de Obesidade Grau III (mórbida)\nProcure um médico ou nutricionista.")
+      print(f"Não foi possivel inserir os dados. {e}.")
